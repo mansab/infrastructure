@@ -141,9 +141,9 @@ And will proxy all the subsequent URI elements, i.e., after `/client-registry` t
 
 Note: Such annotations should be created in the service's repository itself, together with service deployment related k8s definitions. You may use helm or k8s YAML definition (as provided above).
 
-## Deploy and access Kubernetes Dashboard
+## [Optional, but beneficial] Deploy and access Kubernetes Dashboard
 
-To verify that your cluster is configured correctly and running, you need to install a Kubernetes dashboard and navigate to it in your local browser. 
+To verify that your cluster is configured correctly and running, you can install a Kubernetes dashboard and navigate to it in your local browser. 
 
 ### Deploy Kubernetes Metrics Server
 
