@@ -198,3 +198,12 @@ Select "Token" on the Dashboard UI then copy and paste the entire token you
 receive into the 
 [dashboard authentication screen](http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) 
 to sign in. You are now signed in to the dashboard for your Kubernetes cluster.
+
+
+## Run Nginx Ingress controller (recommended)
+
+Finally, run [nginx ingress controller](https://kubernetes.github.io/ingress-nginx/) to manage external access to the services in the EKS cluster.
+
+```shell
+kubectl apply -f nginx-ingress-controller/*
+```
