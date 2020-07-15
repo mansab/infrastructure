@@ -1,4 +1,4 @@
-# Run EKA infrastructure & services on top Kubernetes on AWS
+# Run EKA infrastructure & services on top Kubernetes in AWS
 
 You can run all of your workload on top of EKS in AWS. Follow the steps below to run an EKS cluster using Terraform.
 To manage external access to your services Nginx ingress controller for Kubernetes will be used.
