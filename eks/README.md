@@ -1,8 +1,15 @@
-# Provisions an EKS Cluster
+# Run EKA infrastructure & services on top Kubernetes on AWS
 
-Terraform configuration files to provision an EKS cluster on AWS.
+You can run all of your workload on top of EKS in AWS. Follow the steps below to run an EKS cluster using Terraform.
+To manage external access to your services Nginx ingress controller for Kubernetes will be used.
 
-## Prerequisites
+## Architecture
+
+![EKS Architecture](eks-architecture.svg)
+
+## Provision your EKS Cluster
+
+Provision an EKS cluster on AWS using Terraform
 
 * Install aws-cli
 
@@ -98,9 +105,17 @@ You can view these outputs again by running:
 $ terraform output
 ```
 
+## Deploy Nginx Ingress controller
+
+Deploy [nginx ingress controller](https://kubernetes.github.io/ingress-nginx/) to manage external access to the services in the EKS cluster.
+
+```shell
+kubectl apply -f nginx-ingress-controller/*
+```
+
 ## Deploy and access Kubernetes Dashboard
 
-To verify that your cluster is configured correctly and running, you will install a Kubernetes dashboard and navigate to it in your local browser. 
+To verify that your cluster is configured correctly and running, you need to install a Kubernetes dashboard and navigate to it in your local browser. 
 
 ### Deploy Kubernetes Metrics Server
 
@@ -198,12 +213,3 @@ Select "Token" on the Dashboard UI then copy and paste the entire token you
 receive into the 
 [dashboard authentication screen](http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) 
 to sign in. You are now signed in to the dashboard for your Kubernetes cluster.
-
-
-## Run Nginx Ingress controller (recommended)
-
-Finally, run [nginx ingress controller](https://kubernetes.github.io/ingress-nginx/) to manage external access to the services in the EKS cluster.
-
-```shell
-kubectl apply -f nginx-ingress-controller/*
-```
