@@ -113,6 +113,34 @@ Deploy [nginx ingress controller](https://kubernetes.github.io/ingress-nginx/) t
 kubectl apply -f nginx-ingress-controller/*
 ```
 
+You can now simply create a public API endpoint for your service via the Nginx controller with K8s annotations, for example:
+
+```shell
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  name: client-registry-ingress-public
+spec:
+  rules:
+  - host:
+    http:
+      paths:
+      - path: /client-registry(/|$)(.*)
+        backend:
+          serviceName: client-registry
+          servicePort: 8080
+```
+
+In the above example a public end-point for a service named client-registry will be created with the a URL like this: `http://aws-network-load-balancer-domain/client-registry`
+
+And will proxy all the subsequent URI elements, i.e., after `/client-registry` to client-registry service API on port 8080.
+
+Note: Such annotations should be create in the service's repository itself, together with service deployment. You may use helm or k8s YAML definition (as provided above).
+
 ## Deploy and access Kubernetes Dashboard
 
 To verify that your cluster is configured correctly and running, you need to install a Kubernetes dashboard and navigate to it in your local browser. 
