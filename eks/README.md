@@ -139,7 +139,7 @@ In the above example a public end-point for a service named client-registry will
 
 And will proxy all the subsequent URI elements, i.e., after `/client-registry` to client-registry service API on port 8080.
 
-Note: Such annotations should be create in the service's repository itself, together with service deployment. You may use helm or k8s YAML definition (as provided above).
+Note: Such annotations should be created in the service's repository itself, together with service deployment related k8s definitions. You may use helm or k8s YAML definition (as provided above).
 
 ## Deploy and access Kubernetes Dashboard
 
