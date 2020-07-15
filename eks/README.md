@@ -2,7 +2,7 @@
 
 Terraform configuration files to provision an EKS cluster on AWS.
 
-## Pre-requisits
+## Prerequisites
 
 * Install aws-cli
 
