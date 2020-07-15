@@ -110,7 +110,7 @@ over time, is not deployed by default in EKS clusters.
 Download and unzip the metrics server by running the following command.
 
 ```shell
-$ wget -O v0.3.6.tar.gz https://codeload.github.com/kubernetes-sigs/metrics-server/tar.gz/v0.3.6 && tar -xzf v0.3.6.tar.gz
+$ wget -O metrics-server.tar.gz https://codeload.github.com/kubernetes-sigs/metrics-server/tar.gz/v0.3.6 && tar -xzf metrics-server.tar.gz
 ```
 
 Deploy the metrics server to the cluster by running the following command.
@@ -169,22 +169,27 @@ To use the Kubernetes dashboard, you need to provide an authorization token.
 Authenticating using `kubeconfig` is **not** an option. You can read more about
 it in the [Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/#accessing-the-dashboard-ui).
 
+Create Dashboard admin role based access policy
+
+```shell
+$ kubectl apply -f kubernetes-dashboard-admin.rbac.yaml
+```
+
 Generate the token in another terminal (do not close the `kubectl proxy` process).
 
 ```shell
-$ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep service-controller-token | awk '{print $1}')
+$ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user-token | awk '{print $1}') 
 
-Name:         service-controller-token-46qlm
+Name:         admin-user-token-9hj..
 Namespace:    kube-system
 Labels:       <none>
-Annotations:  kubernetes.io/service-account.name: service-controller
-              kubernetes.io/service-account.uid: dd1948f3-6234-11ea-bb3f-0a063115cf22
+Annotations:  kubernetes.io/service-account.name: admin-user
+              kubernetes.io/service-account.uid: 39vsdv6e-dsad-40ed-bdsab..
 
 Type:  kubernetes.io/service-account-token
 
 Data
 ====
-ca.crt:     1025 bytes
 namespace:  11 bytes
 token:      eyJhbGciOiJSUzI1NiIsImtpZCI6I...
 ```

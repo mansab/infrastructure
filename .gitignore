@@ -3,3 +3,4 @@ rabbitmq/gateway_queues.json
 volumes/
 eks/.terraform
 eks/kubeconfig_eka-*
+eks/metrics-server*
