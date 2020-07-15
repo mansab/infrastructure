@@ -1,3 +1,5 @@
 rabbitmq/cm_queues.json
 rabbitmq/gateway_queues.json
 volumes/
+eks/.terraform
+eks/kubeconfig_eka-*
